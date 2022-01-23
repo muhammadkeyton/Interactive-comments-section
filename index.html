@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
+
+  <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
+
+  <!-- bootstrap -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
+  <!-- google fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;700&display=swap" rel="stylesheet">
+
+  <!-- fontawesome kit -->
+  <script src="https://kit.fontawesome.com/65096ca19b.js" crossorigin="anonymous"></script>
+
+  <!-- custom css -->
+  <link rel="stylesheet" href="style.css">
+  
+  <title>Frontend Mentor | Interactive comments section</title>
+</head>
+<body>
+
+  <!-- Pull dynamic content from the data.json file -->
+
+   <main class="comments-section">
+
+    <div class="card">
+      <div class="card-body">
+
+        <div class="profile">
+          <img class="commenter-img" src="images/avatars/image-amyrobson.png" alt="commenter-image">
+          <h4 class="commenter-name overwrite-initial-margin">amyrobson</h4>
+          <h4 class="comment-date overwrite-initial-margin">1 month ago</h4>
+        </div>
+
+        <div class="comment-content">
+          <p>Impressive! Though it seems the drag feature could be improved. But overall it looks incredible. You've nailed the design and the responsiveness at various breakpoints works really well.</p>
+        </div>
+
+
+
+        <div class="votes-reply">
+
+          <div class="votes">
+            <div class="vote-item vote-choice">
+              +
+            </div>
+            <div class="vote-item vote-score">
+              12
+            </div>
+            <div class="vote-item vote-choice">
+              -
+            </div>
+          </div>
+          
+          <div class="reply">
+            <i class="reply-icon fas fa-reply"></i>
+            <a>Reply</a>
+          </div>
+
+          
+
+          
+        </div>
+      
+
+      </div>
+    </div>
+
+    <!-- second comment -->
+    <div class="card">
+      <div class="card-body">
+
+        <div class="profile">
+          <img class="commenter-img" src="images/avatars/image-maxblagun.png" alt="commenter-image">
+          <h4 class="commenter-name overwrite-initial-margin">maxblagun</h4>
+          <h4 class="comment-date overwrite-initial-margin">2 weeks ago</h4>
+        </div>
+
+        <div class="comment-content">
+          <p>Woah, your project looks awesome! How long have you been coding for? I'm still new, but think I want to dive into React as well soon. Perhaps you can give me an insight on where I can learn React? Thanks!</p>
+        </div>
+
+
+
+        <div class="votes-reply">
+
+          <div class="votes">
+            <div class="vote-item vote-choice">
+              +
+            </div>
+            <div class="vote-item vote-score">
+              5
+            </div>
+            <div class="vote-item vote-choice">
+              -
+            </div>
+          </div>
+          
+          <div class="reply">
+            <i class="reply-icon fas fa-reply"></i>
+            <a>Reply</a>
+          </div>
+
+          
+
+          
+        </div>
+      
+
+      </div>
+    </div>
+
+    <!-- reply comment  -->
+
+
+    <div class="replies-container">
+
+
+      <div class="comment-reply">
+
+        <div class="vertical-line"></div>
+        <div class="reply-comment card">
+          <div class="card-body">
+    
+            <div class="profile">
+              <img class="commenter-img" src="images/avatars/image-ramsesmiron.png" alt="commenter-image">
+              <h4 class="commenter-name overwrite-initial-margin">ramsesmiron</h4>
+              <h4 class="comment-date overwrite-initial-margin">1 week ago</h4>
+            </div>
+    
+            <div class="comment-content">
+              <p><a style="color:hsl(238, 40%, 52%)">@maxblagun</a> If you're still new, I'd recommend focusing on the fundamentals of HTML, CSS, and JS before considering React. It's very tempting to jump ahead but lay a solid foundation first.</p>
+            </div>
+    
+    
+    
+            <div class="votes-reply">
+    
+              <div class="votes">
+                <div class="vote-item vote-choice">
+                  +
+                </div>
+                <div class="vote-item vote-score">
+                  4
+                </div>
+                <div class="vote-item vote-choice">
+                  -
+                </div>
+              </div>
+              
+              <div class="reply">
+                <i class="reply-icon fas fa-reply"></i>
+                <a>Reply</a>
+              </div>
+    
+              
+    
+              
+            </div>
+          
+    
+          </div>
+        </div>
+  
+  
+      </div>
+  
+      <!-- current logged in user's comment-reply -->
+  
+      <div class="comment-reply">
+  
+        <div class="vertical-line"></div>
+        <div class="reply-comment card">
+          <div class="card-body">
+    
+            <div class="profile">
+              <img class="commenter-img" src="images/avatars/image-juliusomo.png" alt="commenter-image">
+              <h4 class="commenter-you commenter-name overwrite-initial-margin">juliusomo</h4>
+              <h4 class="you overwrite-initial-margin">you</h4>
+              <h4 class="comment-date overwrite-initial-margin">2 days ago</h4>
+            </div>
+    
+            <div class="comment-content">
+              <p><a style="color:hsl(238, 40%, 52%)">@ramsesmiron</a> I couldn't agree more with this. Everything moves so fast and it always seems like everyone knows the newest library/framework. But the fundamentals are what stay constant.</p>
+            </div>
+    
+    
+    
+            <div class="votes-reply">
+    
+              <div class="votes">
+                <div class="vote-item vote-choice">
+                  +
+                </div>
+                <div class="vote-item vote-score">
+                  2
+                </div>
+                <div class="vote-item vote-choice">
+                  -
+                </div>
+              </div>
+              
+              <div class="logged-in-reply-edit-delete">
+  
+  
+                <div class="delete reply">
+                 <i class="fas fa-trash"></i>
+                 <a>Delete</a>
+                </div>
+  
+                <div class="edit reply">
+                 <i class="fas fa-pen-square"></i>
+                 <a>Edit</a>
+                </div>
+  
+  
+  
+                
+              </div>
+    
+              
+    
+              
+            </div>
+          
+    
+          </div>
+        </div>
+  
+  
+      </div>
+
+    </div>
+
+
+    
+
+<!-- current logged in user's main comment writing area -->
+    <div class="main-comment-container">
+
+      <div class="main-comment card">
+        <div class="card-body">
+          <form action="" method="">
+            <textarea style="resize:none;" class="form-control" placeholder="Leave a comment here"></textarea>
+          </form>
+  
+  
+          <div class="logged-in-commenter">
+            <img class="commenter-img" src="images/avatars/image-juliusomo.png" alt="commenter-img">
+            <button class="comment-submit-button btn">Send</button>
+          </div>
+        </div>
+  
+       
+      </div>
+  
+
+
+
+    </div>
+
+  </main>
+  
+  
+
+    
+    
+
+
+ 
+
+
+
+
+
+
+
+  
+  <!-- <div class="attribution">
+    Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. 
+    Coded by <a href="#">Your Name Here</a>.
+  </div> -->
+</body>
+</html>

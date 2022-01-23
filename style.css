@@ -1,0 +1,240 @@
+*{
+    box-sizing: border-box;
+}
+
+body{
+    font-family: 'Rubik', sans-serif;
+    padding:40px;
+    background-color: hsl(228, 33%, 97%);
+}
+
+
+:root{
+    --date-comment-color:hsl(211, 10%, 45%);
+    --reply-color:hsl(238, 40%, 52%);
+    --votes-bg-color:hsl(223, 19%, 93%);
+    --vote-choice-color:hsl(239, 57%, 85%);
+    --delete-color:hsl(358, 79%, 66%);
+}
+
+
+/* mobile view design */
+
+/* comment section style */
+.comments-section{
+    margin:30px 0;
+    display:grid;
+    gap:2rem;
+}
+
+/* comment card general style */
+.card{
+    max-width:25rem;
+    margin:0 40px 0 auto;
+    border-style: none;
+    border-radius: 10px;
+    
+}
+
+/* commenter's profile styles */
+.profile{
+    display:flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding-right:16px;
+    margin-bottom:20px;
+}
+
+/* overwriting initial margin from commenter name and comment date */
+.overwrite-initial-margin{
+    margin:0 12px;
+}
+
+.commenter-img{
+    max-width:10%;
+}
+
+.commenter-name{
+    font-weight:700;
+    font-size:1.1rem;
+}
+
+.comment-date{
+    font-size:1.2rem;
+    font-weight:400;
+    white-space: nowrap;
+    margin-left:0;
+    color:var(--date-comment-color);
+}
+
+/* comment content style */
+.comment-content{
+    color:var(--date-comment-color);
+    font-size:16px;
+}
+
+
+/* votes and reply styles */
+.votes-reply{
+    display:flex;
+    justify-content: space-between;
+    align-items: center;
+
+}
+
+/* votes styles */
+.votes{
+    width:5rem;
+    background-color:var(--votes-bg-color);
+    display:flex;
+    justify-content: center;
+    border-radius: 10px;
+    padding:5px 0;
+}
+
+.vote-item{
+    margin:0 6px;
+}
+
+.vote-choice{
+    color:var(--vote-choice-color);
+}
+
+.vote-score{
+    color:var(--reply-color)
+}
+
+.reply{
+    cursor: pointer;
+    color:var(--reply-color)
+}
+.reply-icon{
+    margin-right:5px;
+}
+
+
+/* comment's reply styling */
+.replies-container{
+    margin:0 auto;
+    display:grid;
+    gap:1rem;
+}
+.comment-reply{
+    position:relative;
+}
+
+.vertical-line{
+    border-left: 2px solid var(--votes-bg-color);
+    height: 290px;
+    position:absolute;
+
+}
+
+.reply-comment{
+    max-width: 19rem;
+    margin-left:1rem;
+}
+
+
+/* current logged in user style */
+.commenter-you{
+    margin:0;
+    margin-left:15px;
+}
+.you{
+    padding:0 5px;
+    color:#fff;
+    background-color:var(--reply-color);
+    font-size: 1rem;
+    border-radius: 2px;
+}
+.logged-in-reply-edit-delete{
+    display:flex;
+    align-items: center;
+}
+
+.delete{
+    cursor: pointer;
+    color:var(--delete-color);
+    margin-right:30px;
+}
+
+
+.logged-in-commenter{
+    display:flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 30px;
+}
+
+.comment-submit-button{
+    color:#fff;
+    background-color: var(--reply-color);
+}
+
+
+/* slightly bigger screens */
+@media only screen and (min-width: 445px) {
+    .card{
+        margin:0 auto;
+    }
+
+    .vertical-line{
+        height: 270px;
+    
+    }
+
+    .reply-comment{
+        max-width:24rem;
+        margin-left: 1rem;
+    }
+}
+
+
+/* all bigger screens  */
+@media only screen and (min-width:820px) {
+    .card{
+        position:relative;
+        max-width: 40rem;
+        margin:0 auto;
+        padding-left:50px;
+    }
+
+    .votes{
+        width:2rem;
+        position:absolute;
+        flex-direction: column;
+        align-items: center;
+        top:20px;
+        left:15px;
+    }
+
+    .reply{
+        position:absolute;
+        top:30px;
+        right:20px;
+        
+    }
+
+    .delete{
+        margin-right:75px;
+    }
+
+    .reply-comment{
+        max-width:35rem;
+        margin-left:5rem;
+    }
+    .vertical-line{
+        margin-left:2rem;
+        height:210px;
+
+    }
+}
+
+
+
+
+
+
+
+
