@@ -16,8 +16,7 @@
 .prettierignore
 data.json
 design
-README.md
-README-template.md
+README.mdd
 style-guide.md
 
 /node_modules
