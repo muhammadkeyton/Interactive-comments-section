@@ -1,0 +1,428 @@
+<%- include('partials/header'); %>
+
+
+<body>
+  <a href="log-out">log out</a>
+   <main class="comments-section">
+
+ <% comments.forEach((comment)=>{ %>
+
+   <!-- checking if comment belongs to the logged in user -->
+   <% if (comment.commenterInfo.username === currentUser.username){%>
+     <div class="comment card">
+
+         <div class="card-body">
+
+           <div class="profile">
+             <img class="commenter-img" src="<%= comment.commenterInfo.profileImg %>" alt="commenter-image">
+             <h4 class="commenter-you commenter-name overwrite-initial-margin"><%= comment.commenterInfo.username %></h4>
+             <h4 class="you overwrite-initial-margin">you</h4>
+             <h4 class="comment-date overwrite-initial-margin"><%= time.compareTime(comment.createdAt,currentTime) %></h4>
+           </div>
+
+           <div class="comment-content">
+             <p><%= comment.content %></p>
+           </div>
+
+           <!-- comment id passed to form and then to node server -->
+
+           <div class="mainCommentDelete">
+             <input type="hidden" value="<%=comment.id %>">
+           </div>
+
+
+
+           <div class="votes-reply">
+
+             <div class="votes">
+               <div class="main-vote-up vote-item vote-choice upvote">
+                 +
+               </div>
+
+               <div class="main-vote-score vote-item vote-score">
+                 <%= comment.score %>
+               </div>
+
+               <!-- submitting vote score -->
+             <form class="mainvoteScore" action="mainVote" method="post">
+               <input class="voteScore" type="hidden" name="mainvoteScore" value=""/>
+               <input type="hidden" name="commentId" value="<%=comment.id %>"/>
+             </form>
+
+               <div class="main-vote-down vote-item vote-choice downvote">
+                 -
+               </div>
+             </div>
+
+             <div class="logged-in-reply-edit-delete">
+
+
+               <div class="delete">
+                <i class="fas fa-trash"></i>
+                <a>Delete</a>
+               </div>
+
+               <div class="edit">
+                <i class="fas fa-pen-square"></i>
+                <a>Edit</a>
+               </div>
+
+
+
+
+             </div>
+
+
+
+
+           </div>
+
+
+         </div>
+
+
+
+     </div>
+
+
+
+
+
+   <%}else{%>
+    <div class="comment card">
+
+        <div class="card-body">
+
+          <div class="profile">
+            <img class="commenter-img" src="<%= comment.commenterInfo.profileImg %>" alt="commenter-image">
+            <h4 class="commenter-name overwrite-initial-margin"><%= comment.commenterInfo.username %></h4>
+            <h4 class="comment-date overwrite-initial-margin"><%= time.compareTime(comment.createdAt,currentTime) %></h4>
+          </div>
+
+          <div class="comment-content">
+            <p><%= comment.content %></p>
+          </div>
+
+          <!-- comment id and commenter info passed to form and then to node server -->
+          <div class="commentId">
+            <input type="hidden" value="<%=comment.id %>">
+          </div>
+
+          <div class="replyTo">
+            <input type="hidden" value="<%=comment.commenterInfo.username %>">
+          </div>
+
+
+
+
+          <div class="votes-reply">
+
+            <div class="votes">
+              <div class="main-vote-up vote-item vote-choice upvote">
+                +
+              </div>
+
+              <div class="main-vote-score vote-item vote-score">
+                <%= comment.score %>
+              </div>
+
+              <!-- submitting vote score -->
+            <form class="mainvoteScore" action="mainVote" method="post">
+              <input class="voteScore" type="hidden" name="mainvoteScore" value=""/>
+              <input type="hidden" name="commentId" value="<%=comment.id %>"/>
+            </form>
+
+              <div class="main-vote-down vote-item vote-choice downvote">
+                -
+              </div>
+            </div>
+
+
+            <div class="reply">
+              <i class="reply-icon fas fa-reply"></i>
+              <a>Reply</a>
+            </div>
+
+
+
+
+
+          </div>
+
+
+        </div>
+
+
+
+      </div>
+      <%}%>
+
+
+
+
+
+    <!-- reply comment  -->
+    <% if(comment.replies.length > 0){ %>
+      <div class="replies-container">
+      <% comment.replies.forEach((reply)=>{ %>
+
+        <% if(reply.commenterInfo.username === currentUser.username){%>
+          <div class="comment-reply">
+
+            <div class="vertical-line"></div>
+            <div class="reply-comment card">
+              <div class="card-body">
+
+                <div class="profile">
+                  <img class="commenter-img" src="<%= reply.commenterInfo.profileImg %>" alt="commenter-image">
+                  <h4 class="commenter-you commenter-name overwrite-initial-margin"><%= reply.commenterInfo.username %></h4>
+                  <h4 class="you overwrite-initial-margin">you</h4>
+                  <h4 class="comment-date overwrite-initial-margin"><%= time.compareTime(reply.createdAt,currentTime) %></h4>
+                </div>
+
+                <% if(reply.replyToOtherReply){%>
+                  <div class="comment-content reply-comment-content">
+                    <p><a style="color:hsl(238, 40%, 52%);">@<%= reply.replyToOtherReply %></a> <%= reply.content %></p>
+                  </div>
+
+                <%}else{ %>
+                  <div class="comment-content reply-comment-content">
+                    <p><a style="color:hsl(238, 40%, 52%);">@<%= reply.replyingTo %></a> <%= reply.content %></p>
+                  </div>
+
+                <%}%>
+
+                <!-- reply and main comment id  -->
+                <!-- another reminder you can't provide anything here unless you want bugs -->
+                <div class="replyCommentDelete">
+                  <input type="hidden" value="<%=comment.id %>">
+                </div>
+
+
+
+                <div class="votes-reply">
+
+                  <div class="votes">
+                    <div class="vote-item vote-choice upvote reply-vote-up">
+                      +
+                    </div>
+                    <div class="vote-item vote-score reply-vote-score">
+                      <%= reply.score %>
+                    </div>
+
+                    <!-- submitting nested reply vote score -->
+                  <form class="nestedvoteScore" action="nestedVote" method="post">
+                    <input class="voteScore" type="hidden" name="nestedVoteScore" value=""/>
+                    <input class="replyId" type="hidden" name="nestedCommentId" value="<%=reply.id %>"/>
+                    <input type="hidden" name="mainCommentId" value="<%=reply.mainCommentId %>"/>
+                  </form>
+
+
+                    <div class="vote-item vote-choice downvote reply-vote-down">
+                      -
+                    </div>
+                  </div>
+
+                  <div class="logged-in-reply-edit-delete">
+
+
+                    <div class="delete">
+                     <i class="fas fa-trash"></i>
+                     <a>Delete</a>
+                    </div>
+
+                    <div class="edit">
+                     <i class="fas fa-pen-square"></i>
+                     <a>Edit</a>
+                    </div>
+
+
+
+
+                  </div>
+
+
+
+
+                </div>
+
+
+              </div>
+            </div>
+
+
+          </div>
+
+        <%}else{%>
+        <div class="comment-reply">
+
+          <div class="vertical-line"></div>
+          <div class="reply-comment card">
+            <div class="card-body">
+
+              <div class="profile">
+                <img class="commenter-img" src="<%= reply.commenterInfo.profileImg %>" alt="commenter-image">
+                <h4 class="commenter-name overwrite-initial-margin"><%= reply.commenterInfo.username %></h4>
+                <h4 class="comment-date overwrite-initial-margin"><%= time.compareTime(reply.createdAt,currentTime) %></h4>
+              </div>
+
+              <% if(reply.replyToOtherReply){%>
+                <div class="comment-content">
+                  <p><a style="color:hsl(238, 40%, 52%);">@<%= reply.replyToOtherReply %></a> <%= reply.content %></p>
+                </div>
+
+              <%}else{ %>
+                <div class="comment-content">
+                  <p><a style="color:hsl(238, 40%, 52%);">@<%= reply.replyingTo %></a> <%= reply.content %></p>
+                </div>
+
+              <%}%>
+
+              <!-- reply and main comment id  -->
+              <div class="replyToOtherReply">
+                <input type="hidden" value="<%= reply.commenterInfo.username %>">
+              </div>
+
+              <div class="mainCommentId">
+                <input type="hidden" value="<%= reply.mainCommentId %>">
+              </div>
+
+              <div class="votes-reply">
+
+                <div class="votes">
+                  <div class="vote-item vote-choice upvote reply-vote-up">
+                    +
+                  </div>
+                  <div class="vote-item vote-score reply-vote-score">
+                    <%= reply.score %>
+                  </div>
+
+                  <!-- submitting nested reply vote score -->
+                <form class="nestedvoteScore" action="nestedVote" method="post">
+                  <input class="voteScore" type="hidden" name="nestedVoteScore" value=""/>
+                  <input type="hidden" name="nestedCommentId" value="<%=reply.id %>"/>
+                  <input type="hidden" name="mainCommentId" value="<%=reply.mainCommentId %>"/>
+                </form>
+
+
+                  <div class="vote-item vote-choice downvote reply-vote-down">
+                    -
+                  </div>
+                </div>
+
+                <div class="reply reply-to-other-reply">
+                  <i class="reply-icon fas fa-reply"></i>
+                  <a>Reply</a>
+                </div>
+
+
+
+
+              </div>
+
+
+            </div>
+          </div>
+
+
+        </div>
+        <%}%>
+
+
+
+
+      <%})%>
+
+       </div>
+    <% } %>
+
+
+
+    <%})%>
+
+
+
+
+
+
+<!-- current logged in user's main comment writing area -->
+    <div class="main-comment-container">
+
+      <div class="main-comment card">
+        <div class="card-body">
+          <form class="typinForm" action="comment" method="post">
+            <textarea style="resize:none;" name="replyContent" class="form-control" placeholder="Leave a comment here"></textarea>
+
+            <!-- this is for the replies to comments -->
+            <input type="hidden" name="commentId" value ="" />
+            <input type="hidden" name="replyTo" value ="" />
+
+            <!-- this is replying to replies in comments -->
+            <input type="hidden" name="replyToOtherReply" value ="" />
+
+            <!-- edit main comment -->
+            <input class="editCommentId" type="hidden" name="editCommentId" value ="" />
+
+            <!-- edit reply id -->
+            <input class="editReplyId" type="hidden" name="editReplyId" value ="" />
+
+
+
+            <div class="logged-in-commenter">
+              <img class="commenter-img" src="<%= currentUser.profileImg %>" alt="commenter-img">
+              <button type="submit" class="comment-submit-button btn">Send</button>
+            </div>
+
+          </form>
+
+
+
+        </div>
+
+
+      </div>
+
+
+
+
+    </div>
+
+  </main>
+
+  <!-- popup modal -->
+  <div class="modal">
+
+    <!-- Modal content -->
+    <div class="modal-content">
+      <h4 class="modal-heading">Delete comment</h4>
+      <p class="content">Are you sure you want to delete this comment?This will remove the comment and can't be undone</p>
+
+      <div class="modal-buttons-container">
+      <button class="close-button btn">No,Cancel</button>
+
+      <form class="delete-form" action="delete" method="post">
+        <!-- main comment to delete's id -->
+        <input class="mainCommentId" type="hidden" name="mainCommentId" value="">
+
+        <!-- reply comment to delete's id -->
+        <input class="replyCommentId" type="hidden" name="replyCommentId" value="">
+
+
+
+      <button type="submit" class="delete-button btn">Yes,Delete</button>
+      </form>
+      </div>
+
+    </div>
+
+  </div>
+
+
+
+
+  <script type ="text/javascript" src="index.js"></script>
+</body>
+
+
+
+<%- include('partials/footer'); %>

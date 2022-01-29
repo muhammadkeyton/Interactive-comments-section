@@ -19,12 +19,10 @@
 
   <!-- custom css -->
   <link rel="stylesheet" href="style.css">
-  
+
   <title>Frontend Mentor | Interactive comments section</title>
 </head>
 <body>
-
-  <!-- Pull dynamic content from the data.json file -->
 
    <main class="comments-section">
 
@@ -46,27 +44,27 @@
         <div class="votes-reply">
 
           <div class="votes">
-            <div class="vote-item vote-choice">
+            <div class="vote-item vote-choice upvote">
               +
             </div>
             <div class="vote-item vote-score">
               12
             </div>
-            <div class="vote-item vote-choice">
+            <div class="vote-item vote-choice downvote">
               -
             </div>
           </div>
-          
+
           <div class="reply">
             <i class="reply-icon fas fa-reply"></i>
             <a>Reply</a>
           </div>
 
-          
 
-          
+
+
         </div>
-      
+
 
       </div>
     </div>
@@ -90,27 +88,27 @@
         <div class="votes-reply">
 
           <div class="votes">
-            <div class="vote-item vote-choice">
+            <div class="vote-item vote-choice upvote">
               +
             </div>
             <div class="vote-item vote-score">
               5
             </div>
-            <div class="vote-item vote-choice">
+            <div class="vote-item vote-choice downvote">
               -
             </div>
           </div>
-          
+
           <div class="reply">
             <i class="reply-icon fas fa-reply"></i>
             <a>Reply</a>
           </div>
 
-          
 
-          
+
+
         </div>
-      
+
 
       </div>
     </div>
@@ -126,119 +124,119 @@
         <div class="vertical-line"></div>
         <div class="reply-comment card">
           <div class="card-body">
-    
+
             <div class="profile">
               <img class="commenter-img" src="images/avatars/image-ramsesmiron.png" alt="commenter-image">
               <h4 class="commenter-name overwrite-initial-margin">ramsesmiron</h4>
               <h4 class="comment-date overwrite-initial-margin">1 week ago</h4>
             </div>
-    
+
             <div class="comment-content">
               <p><a style="color:hsl(238, 40%, 52%)">@maxblagun</a> If you're still new, I'd recommend focusing on the fundamentals of HTML, CSS, and JS before considering React. It's very tempting to jump ahead but lay a solid foundation first.</p>
             </div>
-    
-    
-    
+
+
+
             <div class="votes-reply">
-    
+
               <div class="votes">
-                <div class="vote-item vote-choice">
+                <div class="vote-item vote-choice upvote">
                   +
                 </div>
                 <div class="vote-item vote-score">
                   4
                 </div>
-                <div class="vote-item vote-choice">
+                <div class="vote-item vote-choice downvote">
                   -
                 </div>
               </div>
-              
+
               <div class="reply">
                 <i class="reply-icon fas fa-reply"></i>
                 <a>Reply</a>
               </div>
-    
-              
-    
-              
+
+
+
+
             </div>
-          
-    
+
+
           </div>
         </div>
-  
-  
+
+
       </div>
-  
+
       <!-- current logged in user's comment-reply -->
-  
+
       <div class="comment-reply">
-  
+
         <div class="vertical-line"></div>
         <div class="reply-comment card">
           <div class="card-body">
-    
+
             <div class="profile">
               <img class="commenter-img" src="images/avatars/image-juliusomo.png" alt="commenter-image">
               <h4 class="commenter-you commenter-name overwrite-initial-margin">juliusomo</h4>
               <h4 class="you overwrite-initial-margin">you</h4>
               <h4 class="comment-date overwrite-initial-margin">2 days ago</h4>
             </div>
-    
+
             <div class="comment-content">
               <p><a style="color:hsl(238, 40%, 52%)">@ramsesmiron</a> I couldn't agree more with this. Everything moves so fast and it always seems like everyone knows the newest library/framework. But the fundamentals are what stay constant.</p>
             </div>
-    
-    
-    
+
+
+
             <div class="votes-reply">
-    
+
               <div class="votes">
-                <div class="vote-item vote-choice">
+                <div class="vote-item vote-choice upvote">
                   +
                 </div>
                 <div class="vote-item vote-score">
                   2
                 </div>
-                <div class="vote-item vote-choice">
+                <div class="vote-item vote-choice downvote">
                   -
                 </div>
               </div>
-              
+
               <div class="logged-in-reply-edit-delete">
-  
-  
+
+
                 <div class="delete reply">
                  <i class="fas fa-trash"></i>
                  <a>Delete</a>
                 </div>
-  
+
                 <div class="edit reply">
                  <i class="fas fa-pen-square"></i>
                  <a>Edit</a>
                 </div>
-  
-  
-  
-                
+
+
+
+
               </div>
-    
-              
-    
-              
+
+
+
+
             </div>
-          
-    
+
+
           </div>
         </div>
-  
-  
+
+
       </div>
 
     </div>
 
 
-    
+
 
 <!-- current logged in user's main comment writing area -->
     <div class="main-comment-container">
@@ -248,42 +246,48 @@
           <form action="" method="">
             <textarea style="resize:none;" class="form-control" placeholder="Leave a comment here"></textarea>
           </form>
-  
-  
+
+
           <div class="logged-in-commenter">
             <img class="commenter-img" src="images/avatars/image-juliusomo.png" alt="commenter-img">
             <button class="comment-submit-button btn">Send</button>
           </div>
         </div>
-  
-       
+
+
       </div>
-  
+
 
 
 
     </div>
 
   </main>
-  
-  
 
-    
-    
+  <!-- popup modal -->
+  <div class="modal">
+
+    <!-- Modal content -->
+    <div class="modal-content">
+      <h4 class="modal-heading">Delete comment</h4>
+      <p class="content">Are you sure you want to delete this comment?This will remove the comment and can't be undone</p>
+
+      <div class="modal-buttons-container">
+      <button class="close-button btn">No,Cancel</button>
+      <button class="delete-button btn">Yes,Delete</button>
+      </div>
+
+    </div>
+
+  </div>
 
 
- 
 
 
-
-
-
-
-
-  
-  <!-- <div class="attribution">
-    Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. 
-    Coded by <a href="#">Your Name Here</a>.
-  </div> -->
+  <script type ="text/javascript" src="index.js"></script>
 </body>
+<footer class="attribution">
+  Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>.
+  Coded by <a href="https://github.com/muhammadkeyton" target="_blank">Muhammad Keyton</a>.
+</footer>
 </html>

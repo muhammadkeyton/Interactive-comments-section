@@ -1,0 +1,51 @@
+<%- include('partials/header'); %>
+
+
+
+
+<body>
+
+  <% if(method === "sign-in"){%>
+    <h4 class="big-heading">If you already have a username,please <%= method %> below to leave a comment.</h4>
+  <%}else{%>
+    <h4>To continue to comment please <%= method %> with a dummy username</h4>
+  <%}%>
+
+	<form class="signin-form" action="<%=route%>" method="post">
+    <div class="mb-3">
+
+      <% if(message.length > 3){ %>
+        <p style="color:red;"><%= message %></p>
+      <%}%>
+
+      <label for="Email" class="form-label">Username</label>
+      <input type="text" class="form-control" id="Email" aria-describedby="emailHelp" name="username">
+      <div id="emailHelp" class="form-text">enter your username.</div>
+    </div>
+    <div class="mb-3">
+      <label for="Password" class="form-label">Password</label>
+      <input type="password" class="form-control" id="Password" name="password">
+    </div>
+
+    <button style="background-color:hsl(238, 40%, 52%);color:#fff;" type="submit" class="btn">Submit</button>
+  </form>
+
+  <% if(method === "sign-in"){ %>
+    <p>Don't have an account yet?<a href="sign-up">Sign up</a></p>
+
+<%  } %>
+
+</body>
+
+
+
+
+
+
+
+
+
+
+
+
+<%- include('partials/footer'); %>
